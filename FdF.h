@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   FdF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/02/26 15:11:03 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/02/28 01:28:21 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+# include "../get_next_line/get_next_line.h"
+# include "../get_next_line/get_next_line_bonus.h"
 
 typedef struct s_data
 {
