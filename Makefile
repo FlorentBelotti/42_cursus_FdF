@@ -6,15 +6,17 @@
 #    By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/02/26 15:21:10 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/03/08 16:34:56 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	./get_next_line/get_next_line_bonus.c \
-		./get_next_line/get_next_line_utils_bonus.c \
-		./get_next_line/get_next_line_utils.c \
+SRCS =	./get_next_line/get_next_line_utils.c \
 		./get_next_line/get_next_line.c \
-		./Source/Fdf_map_data.c \
+		./Source/FdF_utils.c \
+		./Source/FdF_main_test.c \
+		./Source/FdF_parsing.c \
+		./Source/FdF_line_error.c \
+		./Source/FdF_split.c \
 
 CC =	gcc
 RM =	rm -f
