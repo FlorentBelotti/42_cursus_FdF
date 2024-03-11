@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:33:38 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/08 17:44:43 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:28:48 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		get_and_parse_the_line(av[1], &data);
+		print_map_data(data.map_data);
 	}
 }
 
@@ -56,6 +57,17 @@ void	print_split(char **arr)
 	}
 }
 
+void	print_map_data(t_map *map)
+{
+	t_map *current = map;
 
-
-
+	while (current)
+	{
+		printf("\t---- Noeud ----\n\n");
+		printf("\t\033[31mPosition X : %d\033[0m\n", current->pos_x);
+		printf("\t\033[31mPosition Y : %d\033[0m\n", current->pos_y);
+		printf("\t\033[31mPosition Z : %d\033[0m\n", current->pos_z);
+		printf("\033[32m\tColor_code : %#X\033[37m\n\n", current->color_code);
+		current = current->next;
+	}
+}
