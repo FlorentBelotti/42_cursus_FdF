@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:53:01 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/11 18:20:43 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:27:24 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	parse_the_line(char *line, t_data *data)
 		data->standard_x += 1;
 		i++;
 	}
-	free_split_token(token);
+	ft_free_array(token);
 }
 
 void	token_data_to_struct(char *token, t_data *data)
@@ -107,5 +107,5 @@ void	sub_token_data_to_struct(char *token, t_data *data)
 			current->next = new_node;
 		}
 	}
-	free_split_token(sub_token);
+	ft_free_array(sub_token);
 }

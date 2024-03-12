@@ -6,37 +6,41 @@
 #    By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/03/11 17:59:40 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/03/12 18:34:32 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	./get_next_line/get_next_line_utils.c \
-		./get_next_line/get_next_line.c \
-		./Source/FdF_parsing_utils.c \
-		./Source/FdF_main_test.c \
-		./Source/FdF_parsing.c \
-		./Source/FdF_line_error.c \
-		./Source/FdF_token_error.c \
-		./Source/FdF_split.c \
-		./Source/FdF_data_fill.c \
+NAME =	FdF
 
 CC =	gcc
 RM =	rm -f
-CFLAGS = -Wall -Wextra -Werror -g
 
-NAME =	FdF
+CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS += -I./libft
+LDFLAGS = -L./libft -lft
+
+SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_data_fill.c \
+		./FdF_errors/FdF_line_error.c ./FdF_errors/FdF_token_error.c \
+		./FdF_main_test.c \
 
 OBJS =	$(SRCS:.c=.o)
 
-${NAME} : $(OBJS)
-		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+all: libft $(NAME)
+
+${NAME}:	$(OBJS) libft
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+
+libft:
+		make -C ./libft
 
 clean :
 		$(RM) $(OBJS)
+		make -C ./libft clean
 
 fclean : clean
 		$(RM) $(NAME)
+		make -C ./libft fclean
 
 re : fclean $(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft
