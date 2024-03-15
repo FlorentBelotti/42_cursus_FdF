@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/14 18:56:40 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:10:41 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define FDF_H
 
 # include "./libft/libft.h"
+# include "./minilibx-linux/mlx.h"
+
+# ifdef __linux__
+#  include <X11/keysym.h>
+#  include <X11/X.h>
+# elif __APPLE__
+#  include <ApplicationServices/ApplicationServices.h>
+# endif
 
 typedef struct s_data
 {
