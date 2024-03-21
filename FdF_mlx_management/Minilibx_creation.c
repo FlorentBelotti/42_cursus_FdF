@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:31:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/21 15:02:25 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:29:16 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	initialize_mlx(t_data *data)
 		free(mlx);
 		return ;
 	}
+	mlx_key_hook(mlx->win_ptr, switch_assignment, mlx);
 	mlx_loop(mlx->mlx_ptr);
 }
