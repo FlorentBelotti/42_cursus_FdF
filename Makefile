@@ -6,7 +6,7 @@
 #    By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/03/15 18:27:37 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/03/21 14:59:40 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,32 +16,38 @@ CC =	gcc
 RM =	rm -f
 
 CFLAGS = -Wall -Wextra -Werror -g
-CFLAGS += -I./libft
+CFLAGS += -I./libft -I./minilibx-linux
+MLXFLAGS = -L./minilibx-linux -lmlx -L/usr/X11R6/lib -lX11 -lXext
 LDFLAGS = -L./libft -lft
 
 SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_node_management.c \
 		./FdF_errors/FdF_line_error.c ./FdF_errors/FdF_token_error.c \
 		./FdF_parsing/FdF_memory_management.c \
+		./FdF_mlx_management/Minilibx_creation.c \
 		./FdF_main_test.c \
 
 OBJS =	$(SRCS:.c=.o)
 
-all: announce libft $(NAME) finished
+all: announce libft mlx $(NAME) finished
 
 announce:
 	@echo "Author: Florent Belotti"
 	@echo "Project: Fil_de_Fer"
 
-$(NAME):	$(OBJS) libft
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+$(NAME):	$(OBJS) libft mlx
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(MLXFLAGS) -o $(NAME)
 	@echo "Compilation of $(NAME) finished."
 
 libft:
 	@make -C ./libft
 
+mlx:
+	@make -C ./minilibx-linux
+
 clean :
 	@$(RM) $(OBJS)
 	@make -C ./libft clean
+	@make -C ./minilibx-linux clean
 	@echo "Cleaned."
 
 fclean : clean
@@ -54,4 +60,4 @@ re : fclean all
 finished:
 	@echo "Make process finished."
 
-.PHONY: all clean fclean re libft announce finished
+.PHONY: all clean fclean re libft mlx announce finished

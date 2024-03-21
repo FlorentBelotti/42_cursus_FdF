@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/15 18:10:41 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:58:52 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,36 @@
 #  include <ApplicationServices/ApplicationServices.h>
 # endif
 
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
+
+# define KEY_W 119 // Move up
+# define KEY_A 97 // Move left
+# define KEY_S 115 // Move down
+# define KEY_D 100 // Move right
+
+# define KEY_Q 113 // Scale down
+# define KEY_E 101 // Scale up
+
+# define KEY_ESC 65307 // Exit
+
 typedef struct s_data
 {
 	struct s_map	*map_data;
+	struct s_mlx	*mlx;
 
+	long int		col_nb;
 	int				standard_x;
 	int				standard_y;
-	long int		col_nb;
 	int				line_nb;
 
 }	t_data;
+
+typedef struct s_mlx
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+}	t_mlx;
 
 typedef struct s_map
 {
@@ -49,6 +69,20 @@ typedef struct s_map
 void	print_gnl(char *line);
 void	print_split(char **arr);
 void	print_map_data(t_map *map);
+int		is_valid_nbrs_of_args(int ac);
+
+/* MLX_MANAGEMENT */
+
+	/* Minilibx_creation.c */
+
+void	initialize_mlx(t_data *data);
+
+	/* Minilibx_error.c */
+
+	/* Minilibx_key_handling.c */
+
+void	exit_using_key_esc(t_data *data);
+int		switch_assignment(int key_code, t_data *data);
 
 /* FDF_PARSING */
 

@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:51:16 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/14 16:01:14 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:02:53 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_col_nb_equal(char *line, t_data *data)
 		return (1);
 	else
 	{
-		write (2, "Error : incorrect map shape\n", 28);
+		write (2, "ERROR : incorrect map shape\n", 28);
 		return (0);
 	}
 }
@@ -45,7 +45,7 @@ int	is_line_char_valid(char *line)
 	{
 		if (ft_strchr(valid_chars, line[i]) == NULL)
 		{
-			write (2, "Error : invalid character in line\n", 34);
+			write (2, "ERROR : invalid character in line\n", 34);
 			return (0);
 		}
 		i++;

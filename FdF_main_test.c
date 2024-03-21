@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:33:38 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/14 19:18:04 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:00:05 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,22 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	data.map_data = NULL;
-	if (ac == 2)
+	if (is_valid_nbrs_of_args(ac))
 	{
+		data.map_data = NULL;
 		get_and_parse_the_line(av[1], &data);
-		print_map_data(data.map_data);
+		initialize_mlx(&data);
+		free_all_struct(&data);
 	}
-	free_all_struct(&data);
+}
+
+int	is_valid_nbrs_of_args(int ac)
+{
+	if (ac == 2)
+		return (1);
+	else
+		write (2, "Error : incorrect number of parameters\n", 39);
+	return (0);
 }
 
 void	print_gnl(char *line)
