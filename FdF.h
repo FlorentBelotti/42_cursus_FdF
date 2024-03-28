@@ -6,15 +6,19 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/21 14:58:52 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:29:28 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+/* LIBFT INCLUDE */
+
 # include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
+
+/* MLX COMPATIBILITY */
 
 # ifdef __linux__
 #  include <X11/keysym.h>
@@ -23,36 +27,60 @@
 #  include <ApplicationServices/ApplicationServices.h>
 # endif
 
+/* DEFINITIONS */
+
+	/* Window size */
+
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
+
+	/* Key code and assignation */
 
 # define KEY_W 119 // Move up
 # define KEY_A 97 // Move left
 # define KEY_S 115 // Move down
 # define KEY_D 100 // Move right
-
 # define KEY_Q 113 // Scale down
 # define KEY_E 101 // Scale up
-
 # define KEY_ESC 65307 // Exit
+
+/* STRUCTURES */
+
+	/* Data and call */
 
 typedef struct s_data
 {
 	struct s_map	*map_data;
 	struct s_mlx	*mlx;
+	struct s_img	*img;
 
 	long int		col_nb;
+	int				line_nb;
 	int				standard_x;
 	int				standard_y;
-	int				line_nb;
 
 }	t_data;
+
+	/* Minilibx data */
 
 typedef struct s_mlx
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
 }	t_mlx;
+
+	/* image data */
+
+typedef struct s_img
+{
+	void			*img_ptr;
+	char			*img_pxl_ptr;
+	int				bits_per_pixel;
+	int				line_len;
+	int				endian;
+}	t_img;
+
+	/* map data */
 
 typedef struct s_map
 {
@@ -69,20 +97,31 @@ typedef struct s_map
 void	print_gnl(char *line);
 void	print_split(char **arr);
 void	print_map_data(t_map *map);
-int		is_valid_nbrs_of_args(int ac);
+void	print_map_point(t_data *data);
+
+/* FDF_UTILS */
+
+	/* FdF_size_utils */
+
+int		count_columns(const char *line, char c);
+int		count_lines(char *file_name);
 
 /* MLX_MANAGEMENT */
 
 	/* Minilibx_creation.c */
 
-void	initialize_mlx(t_data *data);
-
-	/* Minilibx_error.c */
+t_mlx	*init_mlx(t_data *data);
+t_img	*init_mlx_image(t_data *data);
+void	render(t_data *data);
 
 	/* Minilibx_key_handling.c */
 
 void	exit_using_key_esc(t_data *data);
 int		switch_assignment(int key_code, t_data *data);
+
+	/* Minilibx_drawing.c */
+
+void	drawing_grid(t_data *data);
 
 /* FDF_PARSING */
 
@@ -102,7 +141,7 @@ void	append_node_at_tail(t_data *data, t_map *new_node);
 
 	/* FdF_memory_management.c */
 
-void	free_all_struct(t_data *data);
+void	free_all(t_data *data);
 void	free_map_struct(t_map *map_data);
 void	free_and_quit_program(char *line, char **tokens, t_data *data);
 

@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:51:16 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/21 15:02:53 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:24:24 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,4 @@ int	is_line_char_valid(char *line)
 		i++;
 	}
 	return (1);
-}
-
-int	count_columns(const char *line, char c)
-{
-	int	i;
-	int	col_count;
-
-	i = 0;
-	col_count = 0;
-	while (line[i])
-	{
-		while (line[i] == c)
-			i++;
-		if (line[i])
-			col_count++;
-		while (line[i] && line[i] != c)
-			i++;
-	}
-	return (col_count);
 }

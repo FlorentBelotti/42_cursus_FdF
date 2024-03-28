@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:53:01 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/14 18:59:45 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:26:41 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ void	get_and_parse_the_line(char *file_name, t_data *data)
 	fd = open_file(file_name);
 	line = get_next_line(fd);
 	data->col_nb = count_columns(line, ' ');
-	data->standard_y = 1;
+	data->line_nb = count_lines(file_name);
+	data->standard_y = 0;
 	while (line != NULL && check_line(line, data))
 	{
 		parse_the_line(line, data);
 		free(line);
-		data->standard_y += 1;
+		data->standard_y += 30;
 		line = get_next_line(fd);
 	}
 	close(fd);
@@ -51,7 +52,7 @@ void	parse_the_line(char *line, t_data *data)
 
 	i = 0;
 	tokens = ft_split(line, ' ');
-	data->standard_x = 1;
+	data->standard_x = 0;
 	while (tokens[i])
 	{
 		if (ft_strchr(tokens[i], ','))
@@ -64,7 +65,7 @@ void	parse_the_line(char *line, t_data *data)
 			if (token_data_to_struct(tokens[i], data) == 0)
 				free_and_quit_program(line, tokens, data);
 		}
-		data->standard_x += 1;
+		data->standard_x += 30;
 		i++;
 	}
 	ft_free_array(tokens);

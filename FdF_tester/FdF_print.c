@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF_main_test.c                                    :+:      :+:    :+:   */
+/*   FdF_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 19:33:38 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/21 15:00:05 by fbelotti         ###   ########.fr       */
+/*   Created: 2024/03/27 14:32:46 by fbelotti          #+#    #+#             */
+/*   Updated: 2024/03/27 17:48:02 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
 
-int	main(int ac, char **av)
+void	print_map_point(t_data *data)
 {
-	t_data	data;
-
-	if (is_valid_nbrs_of_args(ac))
+	while (data->map_data)
 	{
-		data.map_data = NULL;
-		get_and_parse_the_line(av[1], &data);
-		initialize_mlx(&data);
-		free_all_struct(&data);
+		mlx_pixel_put(data->mlx->mlx_ptr, data->mlx->win_ptr,
+			data->map_data->pos_x, data->map_data->pos_y,
+			data->map_data->color_code);
+		data->map_data = data->map_data->next;
 	}
-}
-
-int	is_valid_nbrs_of_args(int ac)
-{
-	if (ac == 2)
-		return (1);
-	else
-		write (2, "Error : incorrect number of parameters\n", 39);
-	return (0);
 }
 
 void	print_gnl(char *line)
