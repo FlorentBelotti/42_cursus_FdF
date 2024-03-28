@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 10:23:48 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/28 10:25:31 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:33:32 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	count_lines(char *file_name)
 	char	*line;
 
 	line = 0;
+	line_nb = 0;
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)
