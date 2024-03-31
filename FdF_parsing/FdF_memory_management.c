@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:10:51 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/25 18:29:36 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:22:55 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_map_struct(t_map *map_data)
 void	free_all(t_data *data)
 {
 	free_map_struct(data->map_data);
-	free(data->mlx->mlx_ptr);
-	free(data->mlx->win_ptr);
-	free(data->mlx);
+	//free(data->mlx->mlx_ptr);
+	//free(data->mlx->win_ptr);
+	//free(data->mlx);
 }

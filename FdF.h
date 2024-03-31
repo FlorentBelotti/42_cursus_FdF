@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/28 10:29:28 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:20:33 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data
 	struct s_map	*map_data;
 	struct s_mlx	*mlx;
 	struct s_img	*img;
+	struct s_point	*p_data;
 
 	long int		col_nb;
 	int				line_nb;
@@ -92,12 +93,24 @@ typedef struct s_map
 	struct s_map	*next;
 }	t_map;
 
+	/* point data */
+
+typedef struct s_point
+{
+	int				step_x;
+	int				step_y;
+	int				diff_x;
+	int				diff_y;
+}	t_point;
+
 /* TESTS */
 
 void	print_gnl(char *line);
 void	print_split(char **arr);
 void	print_map_data(t_map *map);
 void	print_map_point(t_data *data);
+
+t_map	*find_sub_point(t_map *current);
 
 /* FDF_UTILS */
 

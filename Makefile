@@ -6,7 +6,7 @@
 #    By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/03/28 10:31:06 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/03/28 18:24:53 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_node_management.c \
 		./FdF_mlx_management/Minilibx_key_handling.c \
 		./FdF_tester/FdF_print.c \
 		./FdF_utils/FdF_size_utils.c \
-		./FdF_draw/FdF_Bresenham.c \
+		./FdF_draw/FdF_bresenham.c \
 		./FdF_main.c \
 
 OBJS =	$(SRCS:.c=.o)

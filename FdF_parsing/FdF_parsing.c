@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:53:01 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/28 10:26:41 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/29 09:02:21 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	get_and_parse_the_line(char *file_name, t_data *data)
 	line = get_next_line(fd);
 	data->col_nb = count_columns(line, ' ');
 	data->line_nb = count_lines(file_name);
-	data->standard_y = 0;
+	data->standard_y = 1;
 	while (line != NULL && check_line(line, data))
 	{
 		parse_the_line(line, data);
@@ -52,7 +52,7 @@ void	parse_the_line(char *line, t_data *data)
 
 	i = 0;
 	tokens = ft_split(line, ' ');
-	data->standard_x = 0;
+	data->standard_x = 1;
 	while (tokens[i])
 	{
 		if (ft_strchr(tokens[i], ','))
