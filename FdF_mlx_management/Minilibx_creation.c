@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minilibx_creation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:31:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/27 17:04:43 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/03/31 20:53:21 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_mlx	*init_mlx(t_data *data)
 		return (NULL);
 	}
 	mlx_key_hook(mlx->win_ptr, switch_assignment, mlx);
-	print_map_point(data);
+	draw_grid(data);
 	mlx_loop(mlx->mlx_ptr);
 	return (mlx);
 }
