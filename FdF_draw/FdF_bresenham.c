@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:55:23 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/01 11:54:35 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:42:11 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ void	draw_horizontal(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 	int	dec;
 	int	x;
 	int	y;
+	int	grad;
+	int	div;
 
 	x = p1->pos_x;
 	y = p1->pos_y;
+	grad = 0;
+	div = sqrt(pow(p1->pos_x - p2->pos_x, 2) + pow(p1->pos_y - p2->pos_y, 2));
 	dec = 2 * p_data->diff_y - p_data->diff_x;
 	while (x != p2->pos_x)
 	{
-		mlx_pixel_put(data->mlx->mlx_ptr, data->mlx->win_ptr, x, y,
-			p1->color_code);
+		ft_mlx_pixel_put(data->img, x, y, get_gradient(p1->color_code,
+				p2->color_code, grad));
 		if (dec > 0)
 		{
 			y += p_data->step_y;
@@ -32,6 +36,8 @@ void	draw_horizontal(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 		}
 		x += p_data->step_x;
 		dec += 2 * p_data->diff_y;
+		grad = (sqrt(pow(p1->pos_x - p1->pos_x, 2)
+					+ pow(p1->pos_y - p1->pos_y, 2)) / div) * 100;
 	}
 }
 
@@ -40,14 +46,18 @@ void	draw_vertical(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 	int	dec;
 	int	x;
 	int	y;
+	int	grad;
+	int	div;
 
 	x = p1->pos_x;
 	y = p1->pos_y;
+	grad = 0;
+	div = sqrt(pow(p1->pos_x - p2->pos_x, 2) + pow(p1->pos_y - p2->pos_y, 2));
 	dec = 2 * p_data->diff_x - p_data->diff_y;
 	while (y != p2->pos_y)
 	{
-		mlx_pixel_put(data->mlx->mlx_ptr, data->mlx->win_ptr, x, y,
-			p1->color_code);
+		ft_mlx_pixel_put(data->img, x, y, get_gradient(p1->color_code,
+				p2->color_code, grad));
 		if (dec > 0)
 		{
 			x += p_data->step_x;
@@ -55,6 +65,8 @@ void	draw_vertical(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 		}
 		y += p_data->step_y;
 		dec += 2 * p_data->diff_x;
+		grad = (sqrt(pow(p1->pos_x - p1->pos_x, 2)
+					+ pow(p1->pos_y - p1->pos_y, 2)) / div) * 100;
 	}
 }
 

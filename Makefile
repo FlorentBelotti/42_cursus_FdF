@@ -6,7 +6,7 @@
 #    By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/04/01 11:56:15 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/04/01 22:47:02 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_node_management.c \
 		./FdF_mlx_management/Minilibx_key_handling.c \
 		./FdF_tester/FdF_print.c \
 		./FdF_utils/FdF_size_utils.c ./FdF_utils/FdF_bresenham_utils.c \
-		./FdF_utils/FdF_list_utils.c \
+		./FdF_utils/FdF_list_utils.c ./FdF_utils/FdF_draw_utils.c\
 		./FdF_draw/FdF_bresenham.c \
 		./FdF_main.c \
 
@@ -40,7 +40,7 @@ announce:
 	@echo "Project: Fil_de_Fer"
 
 $(NAME):	$(OBJS) libft mlx
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(MLXFLAGS) -lm -o $(NAME)
 	@echo "Compilation of $(NAME) finished."
 
 libft:

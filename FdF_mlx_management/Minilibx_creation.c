@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:31:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/31 20:53:21 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:30:13 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ t_mlx	*init_mlx(t_data *data)
 		free(mlx);
 		return (NULL);
 	}
-	mlx_key_hook(mlx->win_ptr, switch_assignment, mlx);
-	draw_grid(data);
-	mlx_loop(mlx->mlx_ptr);
 	return (mlx);
 }
 
@@ -56,7 +53,7 @@ t_img	*init_mlx_image(t_data *data)
 		free(img);
 		return (NULL);
 	}
-	img->img_pxl_ptr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
+	img->img_addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
 			&img->line_len, &img->endian);
 	return (img);
 }

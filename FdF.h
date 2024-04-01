@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/01 11:58:15 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/01 22:45:01 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_mlx
 typedef struct s_img
 {
 	void			*img_ptr;
-	char			*img_pxl_ptr;
+	char			*img_addr;
 	int				bits_per_pixel;
 	int				line_len;
 	int				endian;
@@ -135,6 +135,12 @@ t_map	*find_sub_point(t_map *current);
 	/* FdF_bresenham_utils.c */
 
 int		comp_abs_val(t_point *p_data);
+
+	/* FdF_draw_utils.c */
+
+void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
+int		get_gradient(int p1, int p2, int grad);
+int		get_nuance(int comp, t_map col_1, t_map col_2, int grad);
 
 /* MLX_MANAGEMENT */
 
