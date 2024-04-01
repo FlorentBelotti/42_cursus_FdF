@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+         #
+#    By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/03/28 18:24:53 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/04/01 11:56:15 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_node_management.c \
 		./FdF_mlx_management/Minilibx_creation.c \
 		./FdF_mlx_management/Minilibx_key_handling.c \
 		./FdF_tester/FdF_print.c \
-		./FdF_utils/FdF_size_utils.c \
+		./FdF_utils/FdF_size_utils.c ./FdF_utils/FdF_bresenham_utils.c \
+		./FdF_utils/FdF_list_utils.c \
 		./FdF_draw/FdF_bresenham.c \
 		./FdF_main.c \
 

@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:55:23 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/31 21:02:12 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:54:35 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,15 @@ void	draw_vertical(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 	}
 }
 
-int	comp_abs_val(t_point *p_data)
-{
-	if (p_data->diff_x >= p_data->diff_y)
-		return (1);
-	else
-		return (0);
-}
-
-void	choose_line_path(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
-{
-	if (comp_abs_val(p_data) == 1)
-		draw_horizontal(p_data, p1, p2, data);
-	else if (comp_abs_val(p_data) == 0)
-		draw_vertical(p_data, p1, p2, data);
-}
-
 void	choose_draw(t_map *p1, t_map *p2, t_data *data)
 {
 	t_point	*p_data;
 
 	p_data = init_bresenham(p1, p2);
-	choose_line_path(p_data, p1, p2, data);
+	if (comp_abs_val(p_data) == 1)
+		draw_horizontal(p_data, p1, p2, data);
+	else if (comp_abs_val(p_data) == 0)
+		draw_vertical(p_data, p1, p2, data);
 }
 
 t_point	*init_bresenham(t_map *p1, t_map *p2)
@@ -119,30 +106,4 @@ void	draw_grid(t_data *data)
 			choose_draw(current, sub_p, data);
 		current = current->next;
 	}
-}
-
-t_map	*find_next_point(t_map *current)
-{
-	t_map	*next_p;
-
-	if (current->next == NULL)
-		return (NULL);
-	next_p = current->next;
-	if (next_p->pos_y == current->pos_y && next_p->pos_x == current->pos_x + 30)
-		return (next_p);
-	return (NULL);
-}
-
-t_map	*find_sub_point(t_map *current)
-{
-	t_map	*iter;
-
-	iter = current->next;
-	while (iter)
-	{
-		if (iter->pos_x == current->pos_x && iter->pos_y == current->pos_y + 30)
-			return (iter);
-		iter = iter->next;
-	}
-	return (NULL);
 }

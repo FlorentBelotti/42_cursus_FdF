@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/31 21:14:45 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:58:15 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,11 @@ typedef struct s_point
 
 	/* FdF_bresenham.c */
 
-int		comp_abs_val(t_point *p_data);
 void	draw_horizontal(t_point *p_data, t_map *p1, t_map *p2, t_data *data);
 void	draw_vertical(t_point *p_data, t_map *p1, t_map *p2, t_data *data);
-void	choose_line_path(t_point *p_data, t_map *p1, t_map *p2, t_data *data);
 void	choose_draw(t_map *p1, t_map *p2, t_data *data);
 void	draw_grid(t_data *data);
 t_point	*init_bresenham(t_map *p1, t_map *p2);
-t_map	*find_next_point(t_map *current);
-t_map	*find_sub_point(t_map *current);
 
 /* TESTS */
 
@@ -124,14 +120,21 @@ void	print_split(char **arr);
 void	print_map_data(t_map *map);
 void	print_map_point(t_data *data);
 
-t_map	*find_sub_point(t_map *current);
-
 /* FDF_UTILS */
 
 	/* FdF_size_utils */
 
 int		count_columns(const char *line, char c);
 int		count_lines(char *file_name);
+
+	/* FdF_list_utils.c */
+
+t_map	*find_next_point(t_map *current);
+t_map	*find_sub_point(t_map *current);
+
+	/* FdF_bresenham_utils.c */
+
+int		comp_abs_val(t_point *p_data);
 
 /* MLX_MANAGEMENT */
 
