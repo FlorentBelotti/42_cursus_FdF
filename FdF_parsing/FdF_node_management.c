@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:58:25 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/14 13:14:31 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:02:12 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ void	append_node_at_tail(t_data *data, t_map *new_node)
 		current = current->next;
 	current->next = new_node;
 }
-

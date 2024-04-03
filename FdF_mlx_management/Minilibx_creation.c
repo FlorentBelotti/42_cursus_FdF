@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minilibx_creation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:31:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/01 22:30:13 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:40:04 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,21 @@ t_mlx	*init_mlx(t_data *data)
 	return (mlx);
 }
 
-t_img	*init_mlx_image(t_data *data)
+void	init_mlx_image(t_data *data)
 {
-	t_img	*img;
-	t_mlx	*mlx;
-
-	mlx = data->mlx;
-	img = NULL;
 	data->img = malloc(sizeof(t_img));
-	if (!img)
-		return (NULL);
-	img = data->img;
-	img->img_ptr = mlx_new_image(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-	if (!img->img_ptr)
+	if (!data->img)
+		return ;
+	data->img->img_ptr = mlx_new_image(data->mlx->mlx_ptr,
+			WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img->img_ptr)
 	{
-		free(img);
-		return (NULL);
+		free(data->img);
+		return ;
 	}
-	img->img_addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
-			&img->line_len, &img->endian);
-	return (img);
+	data->img->img_addr = mlx_get_data_addr(data->img->img_ptr,
+			&(data)->img->bits_per_pixel, &(data)->img->line_len,
+			&(data)->img->endian);
 }
 
 void	render(t_data *data)

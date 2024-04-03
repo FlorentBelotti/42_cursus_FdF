@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/01 22:45:01 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:55:15 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_data
 	struct s_mlx	*mlx;
 	struct s_img	*img;
 	struct s_point	*p_data;
+	struct s_mvt	*mvt;
 
 	long int		col_nb;
 	int				line_nb;
@@ -61,6 +62,20 @@ typedef struct s_data
 	int				standard_y;
 
 }	t_data;
+
+typedef struct s_mvt
+{
+	int		grid_width;
+	int		grid_height;
+	int		v_zoom;
+	int		min_x;
+	int		max_x;
+	int		min_y;
+	int		max_y;
+	int		offset_x;
+	int		offset_y;
+	double	angle;
+}	t_mvt;
 
 	/* Minilibx data */
 
@@ -88,7 +103,10 @@ typedef struct s_map
 	int				pos_x;
 	int				pos_y;
 	int				pos_z;
-	unsigned int	color_code;
+	int				color_code;
+
+	int				save_x;
+	int				save_y;
 
 	struct s_map	*next;
 }	t_map;
@@ -104,6 +122,12 @@ typedef struct s_point
 }	t_point;
 
 /* FDF_DRAW */
+
+	/* FdF_isometric.c */
+
+void	init_mvt(t_data *data);
+void	get_offset(t_data *data);
+void	iso_projection(t_data *data);
 
 	/* FdF_bresenham.c */
 
@@ -147,7 +171,7 @@ int		get_nuance(int comp, t_map col_1, t_map col_2, int grad);
 	/* Minilibx_creation.c */
 
 t_mlx	*init_mlx(t_data *data);
-t_img	*init_mlx_image(t_data *data);
+void	init_mlx_image(t_data *data);
 void	render(t_data *data);
 
 	/* Minilibx_key_handling.c */
