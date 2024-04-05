@@ -5,72 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 16:40:35 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/03 17:06:27 by fbelotti         ###   ########.fr       */
+/*   Created: 2024/04/04 16:51:44 by fbelotti          #+#    #+#             */
+/*   Updated: 2024/04/05 16:01:08 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
 
-void	init_mvt(t_data *data)
+void	apply_isometric_projection(t_data *data)
 {
-	data->mvt = malloc(sizeof(t_mvt));
-	if (!data->mvt)
-		return ;
-	data->mvt->angle = M_PI / 4;
-	data->mvt->v_zoom = 10;
-	data->mvt->grid_width = data->col_nb * data->mvt->v_zoom;
-	data->mvt->grid_height = data->line_nb * data->mvt->v_zoom;
-	data->mvt->max_x = INT_MIN;
-	data->mvt->min_x = INT_MAX;
-	data->mvt->max_y = INT_MIN;
-	data->mvt->min_y = INT_MAX;
-}
+	t_map	*current;
 
-void	get_offset(t_data *data)
-{
-	t_map	*cur;
-	int		temp_x;
-	int		temp_y;
-
-	cur = data->map_data;
-	while (cur)
-	{
-		temp_x = (cur->pos_x - cur->pos_y) * cos(data->mvt->angle)
-			+ data->mvt->v_zoom;
-		temp_y = ((cur->pos_x + cur->pos_y) * sin(data->mvt->angle)
-				- cur->pos_z) - data->mvt->v_zoom;
-		if (temp_x > data->mvt->max_x)
-			data->mvt->max_x = temp_x;
-		if (temp_x < data->mvt->min_x)
-			data->mvt->min_x = temp_x;
-		if (temp_y > data->mvt->max_y)
-			data->mvt->max_y = temp_y;
-		if (temp_y < data->mvt->min_y)
-			data->mvt->min_y = temp_y;
-		cur = cur->next;
-	}
-	data->mvt->offset_x = (WIN_WIDTH - (data->mvt->max_x - data->mvt->min_x))
-		/ 2 - data->mvt->min_x;
-	data->mvt->offset_y = (WIN_HEIGHT - (data->mvt->max_y - data->mvt->min_y))
-		/ 2 - data->mvt->min_y;
-}
-
-void	iso_projection(t_data *data)
-{
-	t_map	*cur;
-
+	current = data->map_data;
 	init_mvt(data);
-	get_offset(data);
-	cur = data->map_data;
-	while (cur)
+	while (current)
 	{
-		cur->save_x = cur->pos_x;
-		cur->save_y = cur->pos_y;
-		cur->pos_x = (cur->save_x - cur->save_y) * cos(data->mvt->angle)
-			+ data->mvt->v_zoom + data->mvt->offset_x;
-		cur->pos_y = ((cur->save_x + cur->save_y) * sin(data->mvt->angle)
-				- cur->pos_z) + data->mvt->v_zoom + data->mvt->offset_y;
-		cur = cur->next;
+		save_value(current, data);
+		rotate_around_z_axis(current);
+		rotate_around_x_axis(current);
+		current = current->next;
 	}
+	get_offset(data);
+	add_offset(data);
+}
+
+void	save_value(t_map *cur, t_data *data)
+{
+	cur->save_x = cur->pos_x;
+	cur->save_y = cur->pos_y;
+	cur->save_z = cur->pos_z * data->mvt->scale_factor;
+}
+
+void	rotate_around_z_axis(t_map *cur)
+{
+	double	rad;
+
+	rad = 45 * M_PI / 180.0;
+	cur->pos_x = cur->save_x * cos(rad) - cur->save_y * sin(rad);
+	cur->pos_y = cur->save_x * sin(rad) + cur->save_y * cos(rad);
+}
+
+void	rotate_around_x_axis(t_map *cur)
+{
+	double	rad;
+
+	rad = 0.615;
+	cur->pos_y = cur->save_y * cos(rad) - cur->save_z * sin(rad);
+	cur->pos_z = cur->save_y * sin(rad) + cur->save_z * cos(rad);
 }

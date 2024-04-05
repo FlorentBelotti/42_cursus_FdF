@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/03 14:55:15 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:01:55 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,13 @@ typedef struct s_data
 
 typedef struct s_mvt
 {
-	int		grid_width;
-	int		grid_height;
-	int		v_zoom;
-	int		min_x;
 	int		max_x;
-	int		min_y;
 	int		max_y;
+	int		min_x;
+	int		min_y;
 	int		offset_x;
 	int		offset_y;
-	double	angle;
+	int		scale_factor;
 }	t_mvt;
 
 	/* Minilibx data */
@@ -107,6 +104,7 @@ typedef struct s_map
 
 	int				save_x;
 	int				save_y;
+	int				save_z;
 
 	struct s_map	*next;
 }	t_map;
@@ -125,9 +123,16 @@ typedef struct s_point
 
 	/* FdF_isometric.c */
 
+void	apply_isometric_projection(t_data *data);
+void	save_value(t_map *cur, t_data *data);
+void	rotate_around_z_axis(t_map *cur);
+void	rotate_around_x_axis(t_map *cur);
+
+	/* FdF_offset.c */
+
 void	init_mvt(t_data *data);
+void	add_offset(t_data *data);
 void	get_offset(t_data *data);
-void	iso_projection(t_data *data);
 
 	/* FdF_bresenham.c */
 

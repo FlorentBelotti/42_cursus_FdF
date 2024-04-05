@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 16:35:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/21 15:03:11 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:02:35 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	is_color_code_valid(char *color_code)
 {
 	int	i;
 
+	printf("color_code : %s\n", color_code);
 	if (ft_strlen(color_code) != 8 || color_code[0] != '0'
 		|| (color_code[1] != 'x' && color_code[1] != 'X'))
 	{
