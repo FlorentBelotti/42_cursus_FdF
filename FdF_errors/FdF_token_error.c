@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_token_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 16:35:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/05 17:02:35 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:57:40 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,18 @@ int	is_color_code_valid(char *color_code)
 {
 	int	i;
 
-	printf("color_code : %s\n", color_code);
-	if (ft_strlen(color_code) != 8 || color_code[0] != '0'
-		|| (color_code[1] != 'x' && color_code[1] != 'X'))
+	if (color_code[0] != '0' || (color_code[1] != 'x' && color_code[1] != 'X'))
 	{
 		write (2, "ERROR : Invalid color code\n", 27);
 		return (0);
 	}
 	i = 2;
-	while (color_code[i])
-	{
-		if (!ft_ishex(color_code[i]))
-		{
-			write (2, "ERROR : Invalid color code\n", 27);
-			return (0);
-		}
+	while (ft_ishex(color_code[i]) == 1)
 		i++;
+	if (i != 8)
+	{
+		write (2, "ERROR : Invalid color code\n", 27);
+		return (0);
 	}
 	return (1);
 }
