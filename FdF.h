@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/07 13:15:36 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:13:16 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,22 @@
 
 /* STRUCTURES */
 
+	/* map data */
+
+typedef struct s_map
+{
+	int				pos_x;
+	int				pos_y;
+	int				pos_z;
+	int				color_code;
+
+	int				save_x;
+	int				save_y;
+	int				save_z;
+
+	struct s_map	*next;
+}	t_map;
+
 	/* Data and call */
 
 typedef struct s_data
@@ -60,6 +76,7 @@ typedef struct s_data
 	int				line_nb;
 	int				standard_x;
 	int				standard_y;
+	t_map			*last;
 
 }	t_data;
 
@@ -92,22 +109,6 @@ typedef struct s_img
 	int				line_len;
 	int				endian;
 }	t_img;
-
-	/* map data */
-
-typedef struct s_map
-{
-	int				pos_x;
-	int				pos_y;
-	int				pos_z;
-	int				color_code;
-
-	int				save_x;
-	int				save_y;
-	int				save_z;
-
-	struct s_map	*next;
-}	t_map;
 
 	/* point data */
 
@@ -184,10 +185,6 @@ void	render(t_data *data);
 int		switch_assignment(int key_code, t_mlx *mlx, t_data *data);
 void	exit_using_key_esc(t_mlx *mlx, t_data *data);
 
-	/* Minilibx_drawing.c */
-
-void	drawing_grid(t_data *data);
-
 /* FDF_PARSING */
 
 	/* FdF_parsing.c */
@@ -215,7 +212,6 @@ void	free_and_quit_program(char *line, char **tokens, t_data *data);
 	/* FdF_line_error.c */
 
 int		check_line(char *line);
-int		is_col_nb_equal(char *line, t_data *data);
 int		is_line_char_valid(char *line);
 int		count_columns(const char *line, char c);
 

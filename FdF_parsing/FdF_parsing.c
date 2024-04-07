@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:53:01 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/07 16:30:50 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:32:15 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ int	token_data_to_struct(char *token, t_data *data)
 			data->map_data = new_node;
 		else
 			append_node_at_tail(data, new_node);
+		data->last = new_node;
 		return (1);
 	}
-	else
-		return (0);
+	return (0);
 }
 
 int	sub_token_data_to_struct(char *token, t_data *data)
@@ -107,6 +107,7 @@ int	sub_token_data_to_struct(char *token, t_data *data)
 			data->map_data = new_node;
 		else
 			append_node_at_tail(data, new_node);
+		data->last = new_node;
 		ft_free_array(sub_token);
 		return (1);
 	}
