@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:53:01 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/05 17:02:11 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/07 14:44:57 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	get_and_parse_the_line(char *file_name, t_data *data)
 	data->col_nb = count_columns(line, ' ');
 	data->line_nb = count_lines(file_name);
 	data->standard_y = 1;
-	while (line != NULL && check_line(line, data))
+	while (line != NULL && check_line(line))
 	{
 		parse_the_line(line, data);
 		free(line);

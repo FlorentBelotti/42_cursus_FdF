@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_draw_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 21:46:13 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/03 14:44:48 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:44:55 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (color == -1)
-		color = 0x00FFFFFF;
 	if (x < 0 || x > 2000 || y < 0 || y > 2000)
 		return ;
 	dst = img->img_addr + (y * img->line_len + x * (img->bits_per_pixel / 8));

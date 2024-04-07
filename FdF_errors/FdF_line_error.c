@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_line_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:51:16 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/03/28 10:24:24 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:15:18 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
 
-int	check_line(char *line, t_data *data)
+int	check_line(char *line)
 {
-	if (is_col_nb_equal(line, data) && is_line_char_valid(line))
+	if (is_line_char_valid(line))
 		return (1);
 	else
 		exit (0);
 }
 
-int	is_col_nb_equal(char *line, t_data *data)
+/* int	is_col_nb_equal(char *line, t_data *data)
 {
 	int	curr_col_nb;
 
@@ -32,7 +32,7 @@ int	is_col_nb_equal(char *line, t_data *data)
 		write (2, "ERROR : incorrect map shape\n", 28);
 		return (0);
 	}
-}
+} */
 
 int	is_line_char_valid(char *line)
 {

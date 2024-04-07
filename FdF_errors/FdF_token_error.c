@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 16:35:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/06 17:57:40 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:19:09 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	is_value_valid(char *value)
 	int	i;
 
 	i = 0;
-	if (ft_atoi(value) == 0 && ft_strcmp("0", value))
+	/*if (ft_atoi(value) == 0 && ft_strcmp("0", value))
 	{
 		write (2, "ERROR : value out of bond\n", 26);
 		return (0);
-	}
+	}*/
 	if (value[0] == '-')
 		i++;
 	if (value[i] == '\0')
@@ -50,7 +50,7 @@ int	is_color_code_valid(char *color_code)
 	i = 2;
 	while (ft_ishex(color_code[i]) == 1)
 		i++;
-	if (i != 8)
+	if (i > 8)
 	{
 		write (2, "ERROR : Invalid color code\n", 27);
 		return (0);
