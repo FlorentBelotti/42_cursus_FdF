@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:33:38 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/07 18:28:13 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:12:20 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int ac, char **av)
 	draw_grid(&data);
 	mlx_put_image_to_window(data.mlx->mlx_ptr, data.mlx->win_ptr,
 		data.img->img_ptr, 0, 0);
-	mlx_key_hook(data.mlx->win_ptr, switch_assignment, data.mlx);
+	mlx_key_hook(data.mlx->win_ptr, switch_assignment, &data);
 	mlx_loop(data.mlx->mlx_ptr);
-	free_all(&data);
 }

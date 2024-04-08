@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_bresenham.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:55:23 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/07 17:01:06 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:49:21 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	choose_draw(t_map *p1, t_map *p2, t_data *data)
 		draw_horizontal(p_data, p1, p2, data);
 	else if (comp_abs_val(p_data) == 0)
 		draw_vertical(p_data, p1, p2, data);
+	free(p_data);
 }
 
 t_point	*init_bresenham(t_map *p1, t_map *p2)

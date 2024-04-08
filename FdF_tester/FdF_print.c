@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:32:46 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/03 14:03:18 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:04:19 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	print_map_data(t_map *map)
 		printf("\t\033[31mPosition Y : %d\033[0m\n", current->pos_y);
 		printf("\t\033[31mPosition Z : %d\033[0m\n", current->pos_z);
 		printf("\033[32m\tColor_code : %#X\033[37m\n\n", current->color_code);
+		printf("\033[33m\tcurrent : %p\033[0m\n", current);
+		printf("\033[33m\tnext_ptr : %p\033[0m\n\n", current->next);
 		current = current->next;
 	}
 }

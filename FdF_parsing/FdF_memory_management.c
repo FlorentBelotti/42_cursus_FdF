@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_memory_management.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:10:51 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/01 22:19:38 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:13:57 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,10 @@ void	free_map_struct(t_map *map_data)
 	t_map	*next;
 
 	current = map_data;
-	while (current)
+	while (current->next)
 	{
 		next = current->next;
 		free(current);
 		current = next;
 	}
-	return ;
-}
-
-void	free_all(t_data *data)
-{
-	free_map_struct(data->map_data);
-	free(data->mlx->mlx_ptr);
-	free(data->mlx->win_ptr);
-	free(data->mlx);
-	free(data->img->img_ptr);
-	free(data->img->img_addr);
-	free(data->img);
 }

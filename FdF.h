@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/07 18:13:16 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:13:16 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,8 +182,8 @@ void	render(t_data *data);
 
 	/* Minilibx_key_handling.c */
 
-int		switch_assignment(int key_code, t_mlx *mlx, t_data *data);
-void	exit_using_key_esc(t_mlx *mlx, t_data *data);
+int		switch_assignment(int key_code, t_data *data);
+void	exit_using_key_esc(t_data *data);
 
 /* FDF_PARSING */
 
