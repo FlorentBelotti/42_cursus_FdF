@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/09 14:53:56 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:49:23 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,10 @@ typedef struct s_mvt
 	int		min_y;
 	int		offset_x;
 	int		offset_y;
-	int		scale_factor;
+	int		add_x;
+	int		add_y;
+	int		projection;
+	int		scale;
 }	t_mvt;
 
 	/* Minilibx data */
@@ -122,12 +125,16 @@ typedef struct s_point
 
 /* FDF_DRAW */
 
+	/* FdF_clear_draw.c */
+
+void	ft_mlx_clear_window(t_data *data);
+
 	/* FdF_isometric.c */
 
 void	apply_isometric_projection(t_data *data);
-void	save_value(t_map *cur, t_data *data);
+void	save_value(t_map *cur);
 void	rotate_around_z_axis(t_map *cur);
-void	rotate_around_x_axis(t_map *cur);
+void	rotate_around_x_axis(t_map *cur, t_data *data);
 
 	/* FdF_offset.c */
 
@@ -182,6 +189,8 @@ void	render(t_data *data);
 	/* Minilibx_key_handling.c */
 
 int		switch_assignment(int key_code, t_data *data);
+void	apply_zoom_effect(int key_code, t_data *data);
+void	translate_offset(int key_code, t_data *data);
 void	exit_using_key_esc(t_data *data);
 
 /* FDF_PARSING */
@@ -199,10 +208,10 @@ int		sub_token_data_to_struct(char *token, t_data *data);
 void	assign_sub_token_data(char **sub_token, t_map *new_node, t_data *data);
 void	assign_token_data(char *token, t_map *new_node, t_data *data);
 void	append_node_at_tail(t_data *data, t_map *new_node);
+void	get_original_map_data(t_data *data);
 
 	/* FdF_memory_management.c */
 
-void	free_all(t_data *data);
 void	free_map_struct(t_map *map_data);
 void	free_and_quit_program(char *line, char **tokens, t_data *data);
 
