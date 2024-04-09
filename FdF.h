@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/08 15:13:16 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:53:56 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,7 @@ int		comp_abs_val(t_point *p_data);
 	/* FdF_draw_utils.c */
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
-int		get_gradient(int p1, int p2, int grad);
-int		get_nuance(int comp, t_map col_1, t_map col_2, int grad);
+int		calculate_color_gradient(int p1, int p2, int perc);
 
 /* MLX_MANAGEMENT */
 

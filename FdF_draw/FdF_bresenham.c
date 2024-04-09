@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:55:23 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/08 16:49:21 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:39:17 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void	draw_horizontal(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 	int	dec;
 	int	x;
 	int	y;
-	int	grad;
+	int	perc;
 	int	div;
 
 	x = p1->pos_x;
 	y = p1->pos_y;
-	grad = 0;
+	perc = 0;
 	div = sqrt(pow(p1->pos_x - p2->pos_x, 2) + pow(p1->pos_y - p2->pos_y, 2));
 	dec = 2 * p_data->diff_y - p_data->diff_x;
 	while (x != p2->pos_x)
 	{
-		ft_mlx_pixel_put(data->img, x, y, get_gradient(p1->color_code,
-				p2->color_code, grad));
+		ft_mlx_pixel_put(data->img, x, y,
+			calculate_color_gradient(p1->color_code, p2->color_code, perc));
 		if (dec > 0)
 		{
 			y += p_data->step_y;
@@ -36,8 +36,8 @@ void	draw_horizontal(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 		}
 		x += p_data->step_x;
 		dec += 2 * p_data->diff_y;
-		grad = (sqrt(pow(p1->pos_x - p1->pos_x, 2)
-					+ pow(p1->pos_y - p1->pos_y, 2)) / div) * 100;
+		perc = (sqrt(pow(x - p1->pos_x, 2)
+					+ pow(y - p1->pos_y, 2)) / div) * 100;
 	}
 }
 
@@ -46,18 +46,18 @@ void	draw_vertical(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 	int	dec;
 	int	x;
 	int	y;
-	int	grad;
+	int	perc;
 	int	div;
 
 	x = p1->pos_x;
 	y = p1->pos_y;
-	grad = 0;
+	perc = 0;
 	div = sqrt(pow(p1->pos_x - p2->pos_x, 2) + pow(p1->pos_y - p2->pos_y, 2));
 	dec = 2 * p_data->diff_x - p_data->diff_y;
 	while (y != p2->pos_y)
 	{
-		ft_mlx_pixel_put(data->img, x, y, get_gradient(p1->color_code,
-				p2->color_code, grad));
+		ft_mlx_pixel_put(data->img, x, y,
+			calculate_color_gradient(p1->color_code, p2->color_code, perc));
 		if (dec > 0)
 		{
 			x += p_data->step_x;
@@ -65,8 +65,8 @@ void	draw_vertical(t_point *p_data, t_map *p1, t_map *p2, t_data *data)
 		}
 		y += p_data->step_y;
 		dec += 2 * p_data->diff_x;
-		grad = (sqrt(pow(p1->pos_x - p1->pos_x, 2)
-					+ pow(p1->pos_y - p1->pos_y, 2)) / div) * 100;
+		perc = (sqrt(pow(x - p1->pos_x, 2)
+					+ pow(y - p1->pos_y, 2)) / div) * 100;
 	}
 }
 
