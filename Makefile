@@ -6,7 +6,7 @@
 #    By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/04/09 16:49:56 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/04/11 17:13:38 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_node_management.c \
 		./FdF_tester/FdF_print.c \
 		./FdF_utils/FdF_size_utils.c ./FdF_utils/FdF_bresenham_utils.c \
 		./FdF_utils/FdF_list_utils.c ./FdF_utils/FdF_draw_utils.c \
+		./FdF_utils/FdF_mvt_utils.c \
 		./FdF_draw/FdF_bresenham.c ./FdF_draw/FdF_isometric.c \
 		./FdF_draw/FdF_offset.c ./FdF_draw/FdF_clear_draw.c \
 		./FdF_main.c \

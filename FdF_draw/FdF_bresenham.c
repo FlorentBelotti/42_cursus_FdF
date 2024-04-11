@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:55:23 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/09 14:39:17 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:44:43 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ void	draw_grid(t_data *data)
 	current = data->map_data;
 	while (current != NULL)
 	{
-		next_p = find_next_point(current);
+		next_p = find_next_point(current, data);
 		if (next_p != NULL)
 			choose_draw(current, next_p, data);
-		sub_p = find_sub_point(current);
+		sub_p = find_sub_point(current, data);
 		if (sub_p != NULL)
 			choose_draw(current, sub_p, data);
 		current = current->next;

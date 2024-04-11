@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/09 16:49:23 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:26:28 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define KEY_D 100 // Move right
 # define KEY_Q 113 // Scale down
 # define KEY_E 101 // Scale up
+# define KEY_MINUS 45 // Projection down
+# define KEY_PLUS 61 // Projection up
 # define KEY_ESC 65307 // Exit
 
 /* STRUCTURES */
@@ -53,6 +55,8 @@ typedef struct s_map
 	int				pos_x;
 	int				pos_y;
 	int				pos_z;
+	int				x_scale;
+	int				y_scale;
 	int				color_code;
 
 	int				save_x;
@@ -76,6 +80,8 @@ typedef struct s_data
 	int				line_nb;
 	int				standard_x;
 	int				standard_y;
+	int				index_x;
+	int				index_y;
 	t_map			*last;
 
 }	t_data;
@@ -92,6 +98,7 @@ typedef struct s_mvt
 	int		add_y;
 	int		projection;
 	int		scale;
+	float	zoom;
 }	t_mvt;
 
 	/* Minilibx data */
@@ -132,13 +139,12 @@ void	ft_mlx_clear_window(t_data *data);
 	/* FdF_isometric.c */
 
 void	apply_isometric_projection(t_data *data);
-void	save_value(t_map *cur);
+void	save_modified_value(t_map *cur);
 void	rotate_around_z_axis(t_map *cur);
 void	rotate_around_x_axis(t_map *cur, t_data *data);
 
 	/* FdF_offset.c */
 
-void	init_mvt(t_data *data);
 void	add_offset(t_data *data);
 void	get_offset(t_data *data);
 
@@ -166,8 +172,8 @@ int		count_lines(char *file_name);
 
 	/* FdF_list_utils.c */
 
-t_map	*find_next_point(t_map *current);
-t_map	*find_sub_point(t_map *current);
+t_map	*find_next_point(t_map *current, t_data *data);
+t_map	*find_sub_point(t_map *current, t_data *data);
 
 	/* FdF_bresenham_utils.c */
 
@@ -177,6 +183,11 @@ int		comp_abs_val(t_point *p_data);
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 int		calculate_color_gradient(int p1, int p2, int perc);
+
+	/* FdF_mvt_utils.c */
+
+void	init_mvt(t_data *data);
+void	apply_zoom_to_point(t_data *data, float zoom);
 
 /* MLX_MANAGEMENT */
 
@@ -189,8 +200,9 @@ void	render(t_data *data);
 	/* Minilibx_key_handling.c */
 
 int		switch_assignment(int key_code, t_data *data);
-void	apply_zoom_effect(int key_code, t_data *data);
-void	translate_offset(int key_code, t_data *data);
+void	apply_projection(int key_code, t_data *data);
+void	apply_translation(int key_code, t_data *data);
+void	apply_zoom(int key_code, t_data *data);
 void	exit_using_key_esc(t_data *data);
 
 /* FDF_PARSING */

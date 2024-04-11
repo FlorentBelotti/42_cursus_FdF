@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:51:44 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/09 16:45:18 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:27:13 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	apply_isometric_projection(t_data *data)
 	current = data->map_data;
 	while (current)
 	{
-		save_value(current);
+		save_modified_value(current);
 		rotate_around_z_axis(current);
 		rotate_around_x_axis(current, data);
 		current = current->next;
@@ -28,7 +28,7 @@ void	apply_isometric_projection(t_data *data)
 	add_offset(data);
 }
 
-void	save_value(t_map *cur)
+void	save_modified_value(t_map *cur)
 {
 	cur->save_x = cur->pos_x;
 	cur->save_y = cur->pos_y;

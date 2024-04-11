@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 17:58:25 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/09 15:52:17 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:12:17 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	assign_sub_token_data(char **sub_token, t_map *new_node, t_data *data)
 	new_node->pos_y = data->standard_y;
 	new_node->save_x = data->standard_x;
 	new_node->save_y = data->standard_y;
+	new_node->save_z = new_node->pos_z;
+	new_node->x_scale = data->index_x;
+	new_node->y_scale = data->index_y;
 }
 
 void	assign_token_data(char *token, t_map *new_node, t_data *data)
@@ -30,6 +33,9 @@ void	assign_token_data(char *token, t_map *new_node, t_data *data)
 	new_node->pos_y = data->standard_y;
 	new_node->save_x = data->standard_x;
 	new_node->save_y = data->standard_y;
+	new_node->save_z = new_node->pos_z;
+	new_node->x_scale = data->index_x;
+	new_node->y_scale = data->index_y;
 }
 
 void	append_node_at_tail(t_data *data, t_map *new_node)
@@ -53,3 +59,4 @@ void	get_original_map_data(t_data *data)
 		current = current->next;
 	}
 }
+

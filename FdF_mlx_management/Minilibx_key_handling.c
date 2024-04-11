@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:35:43 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/09 16:50:57 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:28:51 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,34 @@ int	switch_assignment(int key_code, t_data *data)
 		exit_using_key_esc(data);
 	if (key_code == KEY_W || key_code == KEY_S || key_code == KEY_A
 		|| key_code == KEY_D)
-		translate_offset(key_code, data);
+		apply_translation(key_code, data);
+	if (key_code == KEY_PLUS || key_code == KEY_MINUS)
+		apply_projection(key_code, data);
 	if (key_code == KEY_Q || key_code == KEY_E)
-		apply_zoom_effect(key_code, data);
+		apply_zoom(key_code, data);
 	return (0);
 }
 
-void	apply_zoom_effect(int key_code, t_data *data)
+void	apply_zoom(int key_code, t_data *data)
 {
-	if (key_code == KEY_E)
-		data->mvt->projection += 1;
 	if (key_code == KEY_Q)
+		data->mvt->zoom *= 1.1;
+	if (key_code == KEY_E)
+		data->mvt->zoom /= 1.1;
+	ft_mlx_clear_window(data);
+	get_original_map_data(data);
+	apply_zoom_to_point(data, data->mvt->zoom);
+	apply_isometric_projection(data);
+	draw_grid(data);
+	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr,
+		data->img->img_ptr, 0, 0);
+}
+
+void	apply_projection(int key_code, t_data *data)
+{
+	if (key_code == KEY_PLUS)
+		data->mvt->projection += 1;
+	if (key_code == KEY_MINUS)
 		data->mvt->projection -= 1;
 	ft_mlx_clear_window(data);
 	get_original_map_data(data);
@@ -38,7 +55,7 @@ void	apply_zoom_effect(int key_code, t_data *data)
 		data->img->img_ptr, 0, 0);
 }
 
-void	translate_offset(int key_code, t_data *data)
+void	apply_translation(int key_code, t_data *data)
 {
 	if (key_code == KEY_W)
 		data->mvt->add_y -= 10;

@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:32:46 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/08 15:04:19 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:11:06 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,15 @@ void	print_map_data(t_map *map)
 		printf("\t\033[31mPosition X : %d\033[0m\n", current->pos_x);
 		printf("\t\033[31mPosition Y : %d\033[0m\n", current->pos_y);
 		printf("\t\033[31mPosition Z : %d\033[0m\n", current->pos_z);
+		printf("\t\033[34mSave X : %d\033[0m\n", current->save_x);
+		printf("\t\033[34mSave Y : %d\033[0m\n", current->save_y);
+		printf("\t\033[34mSave Z : %d\033[0m\n", current->save_z);
+		printf("\t\033[35mScale_x : %d\033[0m\n", current->x_scale);
+		printf("\t\033[35mScale_y : %d\033[0m\n", current->y_scale);
 		printf("\033[32m\tColor_code : %#X\033[37m\n\n", current->color_code);
 		printf("\033[33m\tcurrent : %p\033[0m\n", current);
 		printf("\033[33m\tnext_ptr : %p\033[0m\n\n", current->next);
 		current = current->next;
 	}
+	printf("\n\n ---- FIN DE LA LISTE ---- \n\n");
 }
