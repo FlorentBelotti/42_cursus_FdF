@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 19:33:38 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/11 19:27:17 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 22:56:44 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ac != 2)
+	{
+		ft_printf("ERROR : ./FdF ./file_name");
 		return (0);
+	}
 	data.map_data = NULL;
 	init_mvt(&data);
 	get_and_parse_the_line(av[1], &data);

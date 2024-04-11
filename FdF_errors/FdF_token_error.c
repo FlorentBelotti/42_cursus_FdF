@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 16:35:55 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/07 13:19:09 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 21:59:13 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ int	is_value_valid(char *value)
 	int	i;
 
 	i = 0;
-	/*if (ft_atoi(value) == 0 && ft_strcmp("0", value))
-	{
-		write (2, "ERROR : value out of bond\n", 26);
-		return (0);
-	}*/
 	if (value[0] == '-')
 		i++;
 	if (value[i] == '\0')

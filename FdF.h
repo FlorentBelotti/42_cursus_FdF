@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FdF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:55:54 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/11 19:26:28 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 23:29:04 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +209,9 @@ void	exit_using_key_esc(t_data *data);
 
 	/* FdF_parsing.c */
 
-int		open_file(char *file_name);
+int		open_file(char *file_name, t_data *data);
 void	get_and_parse_the_line(char *file_name, t_data *data);
-void	parse_the_line(char *line, t_data *data);
+void	parse_the_line(char *line, int fd, t_data *data);
 int		token_data_to_struct(char *token, t_data *data);
 int		sub_token_data_to_struct(char *token, t_data *data);
 
@@ -225,7 +225,7 @@ void	get_original_map_data(t_data *data);
 	/* FdF_memory_management.c */
 
 void	free_map_struct(t_map *map_data);
-void	free_and_quit_program(char *line, char **tokens, t_data *data);
+void	free_and_quit_program(char *line, char **tokens, int fd, t_data *data);
 
 /* FDF_ERROR */
 
@@ -234,6 +234,7 @@ void	free_and_quit_program(char *line, char **tokens, t_data *data);
 int		check_line(char *line);
 int		is_line_char_valid(char *line);
 int		count_columns(const char *line, char c);
+void	free_gnl_then_quit(char *line, int fd, t_data *data);
 
 	/* FdF_token_error.c */
 

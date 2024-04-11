@@ -3,24 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   FdF_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+        */
+/*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 14:53:01 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/11 08:11:15 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 23:29:41 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
 
-int	open_file(char *file_name)
+int	open_file(char *file_name, t_data *data)
 {
 	int	fd;
 
 	fd = open(file_name, O_RDONLY);
-	if (fd < 0)
+	if (fd <= 0)
 	{
-		write (2, "Error : file is not found\n", 27);
-		exit (0);
+		perror("ERROR : while opening file");
+		free(data->mvt);
+		exit (EXIT_FAILURE);
 	}
 	return (fd);
 }
@@ -30,24 +31,29 @@ void	get_and_parse_the_line(char *file_name, t_data *data)
 	char	*line;
 	int		fd;
 
-	fd = open_file(file_name);
+	fd = open_file(file_name, data);
 	line = get_next_line(fd);
 	data->col_nb = count_columns(line, ' ');
 	data->line_nb = count_lines(file_name);
 	data->standard_y = 1;
 	data->index_y = 1;
-	while (line != NULL && check_line(line))
+	while (line != NULL)
 	{
-		parse_the_line(line, data);
-		free(line);
-		data->standard_y += data->mvt->scale;
-		data->index_y++;
-		line = get_next_line(fd);
+		if (check_line(line))
+		{
+			parse_the_line(line, fd, data);
+			free(line);
+			data->standard_y += data->mvt->scale;
+			data->index_y++;
+			line = get_next_line(fd);
+		}
+		else
+			free_gnl_then_quit(line, fd, data);
 	}
 	close(fd);
 }
 
-void	parse_the_line(char *line, t_data *data)
+void	parse_the_line(char *line, int fd, t_data *data)
 {
 	char	**tokens;
 	int		i;
@@ -61,12 +67,12 @@ void	parse_the_line(char *line, t_data *data)
 		if (ft_strchr(tokens[i], ','))
 		{
 			if (sub_token_data_to_struct(tokens[i], data) == 0)
-				free_and_quit_program(line, tokens, data);
+				free_and_quit_program(line, tokens, fd, data);
 		}
 		else
 		{
 			if (token_data_to_struct(tokens[i], data) == 0)
-				free_and_quit_program(line, tokens, data);
+				free_and_quit_program(line, tokens, fd, data);
 		}
 		data->standard_x += data->mvt->scale;
 		data->index_x++;

@@ -6,7 +6,7 @@
 /*   By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:51:16 by fbelotti          #+#    #+#             */
-/*   Updated: 2024/04/07 13:15:18 by fbelotti         ###   ########.fr       */
+/*   Updated: 2024/04/11 23:21:17 by fbelotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,8 @@ int	check_line(char *line)
 	if (is_line_char_valid(line))
 		return (1);
 	else
-		exit (0);
-}
-
-/* int	is_col_nb_equal(char *line, t_data *data)
-{
-	int	curr_col_nb;
-
-	curr_col_nb = count_columns(line, ' ');
-	if (curr_col_nb == data->col_nb)
-		return (1);
-	else
-	{
-		write (2, "ERROR : incorrect map shape\n", 28);
 		return (0);
-	}
-} */
+}
 
 int	is_line_char_valid(char *line)
 {
@@ -51,4 +37,19 @@ int	is_line_char_valid(char *line)
 		i++;
 	}
 	return (1);
+}
+
+void	free_gnl_then_quit(char *line, int fd, t_data *data)
+{
+	if (data->map_data != NULL)
+		free_map_struct(data->map_data);
+	while (line != NULL)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	free(data->mvt);
+	exit(EXIT_FAILURE);
 }
