@@ -12,10 +12,9 @@
 
 #include "../FdF.h"
 
-t_map	*find_next_point(t_map *current, t_data *data)
+t_map	*find_next_point(t_map *current)
 {
 	t_map	*next_p;
-	(void)data;
 
 	if (current->next == NULL)
 		return (NULL);
@@ -25,10 +24,9 @@ t_map	*find_next_point(t_map *current, t_data *data)
 	return (NULL);
 }
 
-t_map	*find_sub_point(t_map *current, t_data *data)
+t_map	*find_sub_point(t_map *current)
 {
 	t_map	*iter;
-	(void)data;
 
 	if (current->next == NULL)
 		return (NULL);

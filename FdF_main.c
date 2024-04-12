@@ -32,5 +32,6 @@ int	main(int ac, char **av)
 	mlx_put_image_to_window(data.mlx->mlx_ptr, data.mlx->win_ptr,
 		data.img->img_ptr, 0, 0);
 	mlx_key_hook(data.mlx->win_ptr, switch_assignment, &data);
+	mlx_hook(data.mlx->win_ptr, 17, 0, exit_fdf, &data);
 	mlx_loop(data.mlx->mlx_ptr);
 }

@@ -172,8 +172,8 @@ int		count_lines(char *file_name);
 
 	/* FdF_list_utils.c */
 
-t_map	*find_next_point(t_map *current, t_data *data);
-t_map	*find_sub_point(t_map *current, t_data *data);
+t_map	*find_next_point(t_map *current);
+t_map	*find_sub_point(t_map *current);
 
 	/* FdF_bresenham_utils.c */
 
@@ -203,7 +203,7 @@ int		switch_assignment(int key_code, t_data *data);
 void	apply_projection(int key_code, t_data *data);
 void	apply_translation(int key_code, t_data *data);
 void	apply_zoom(int key_code, t_data *data);
-void	exit_using_key_esc(t_data *data);
+int		exit_fdf(t_data *data);
 
 /* FDF_PARSING */
 

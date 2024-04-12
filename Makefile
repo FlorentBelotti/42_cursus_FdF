@@ -25,7 +25,6 @@ SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_node_management.c \
 		./FdF_parsing/FdF_memory_management.c \
 		./FdF_mlx_management/Minilibx_creation.c \
 		./FdF_mlx_management/Minilibx_key_handling.c \
-		./FdF_tester/FdF_print.c \
 		./FdF_utils/FdF_size_utils.c ./FdF_utils/FdF_bresenham_utils.c \
 		./FdF_utils/FdF_list_utils.c ./FdF_utils/FdF_draw_utils.c \
 		./FdF_utils/FdF_mvt_utils.c \

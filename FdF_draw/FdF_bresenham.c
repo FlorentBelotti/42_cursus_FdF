@@ -111,10 +111,10 @@ void	draw_grid(t_data *data)
 	current = data->map_data;
 	while (current != NULL)
 	{
-		next_p = find_next_point(current, data);
+		next_p = find_next_point(current);
 		if (next_p != NULL)
 			choose_draw(current, next_p, data);
-		sub_p = find_sub_point(current, data);
+		sub_p = find_sub_point(current);
 		if (sub_p != NULL)
 			choose_draw(current, sub_p, data);
 		current = current->next;

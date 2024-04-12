@@ -15,7 +15,7 @@
 int	switch_assignment(int key_code, t_data *data)
 {
 	if (key_code == KEY_ESC)
-		exit_using_key_esc(data);
+		exit_fdf(data);
 	if (key_code == KEY_W || key_code == KEY_S || key_code == KEY_A
 		|| key_code == KEY_D)
 		apply_translation(key_code, data);
@@ -73,7 +73,7 @@ void	apply_translation(int key_code, t_data *data)
 		data->img->img_ptr, 0, 0);
 }
 
-void	exit_using_key_esc(t_data *data)
+int	exit_fdf(t_data *data)
 {
 	mlx_destroy_image(data->mlx->mlx_ptr, data->img->img_ptr);
 	mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);

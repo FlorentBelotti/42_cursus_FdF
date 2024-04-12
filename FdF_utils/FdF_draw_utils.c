@@ -39,6 +39,5 @@ int	calculate_color_gradient(int p1, int p2, int perc)
 	color1 = p1 & 0xFF;
 	color2 = p2 & 0xFF;
 	new_color |= (color1 + ((color2 - color1) * perc / 100)) & 0xFF;
-
 	return (new_color);
 }

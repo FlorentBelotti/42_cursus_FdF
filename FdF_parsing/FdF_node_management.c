@@ -59,4 +59,3 @@ void	get_original_map_data(t_data *data)
 		current = current->next;
 	}
 }
-
