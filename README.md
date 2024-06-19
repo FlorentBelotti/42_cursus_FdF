@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FdF - Wireframe Terrain Renderer</title>
 </head>
 <body>
 
-<h1>FdF - Wireframe Terrain Renderer</h1>
+<h1>42_cursus_Fil_de_fer</h1>
 
 <p>FdF (Fil de Fer) is a graphical project that involves creating a schematic representation of a terrain in relief. This project is designed to help students learn graphical programming using the MiniLibX library. The final output is a wireframe model of a terrain displayed using isometric projection.</p>
 
@@ -73,9 +72,5 @@
     <li><code>FdF_mvt_utils.c</code>: Utility functions for handling movements (translation, rotation).</li>
     <li><code>FdF_size_utils.c</code>: Utility functions for size and scaling operations.</li>
 </ul>
-
-<h2 id="license">License</h2>
-<p>This project is licensed under the MIT License. See the LICENSE file for details.</p>
-
 </body>
 </html>
