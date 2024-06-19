@@ -3,67 +3,87 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbelotti <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: fbelotti <marvin@42perpignan.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/26 15:13:13 by fbelotti          #+#    #+#              #
-#    Updated: 2024/04/11 22:57:35 by fbelotti         ###   ########.fr        #
+#    Updated: 2024/06/19 17:14:42 by fbelotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	FdF
+NAME = Fil_de_fer
+AUTHOR = Florent Belotti
 
-CC =	gcc
-RM =	rm -f
+CC = gcc
+RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror -g
-CFLAGS += -I./libft -I./minilibx-linux
-MLXFLAGS = -L./minilibx-linux -lmlx -L/usr/X11R6/lib -lX11 -lXext
-LDFLAGS = -L./libft -lft
+INCLUDES = -I./Includes -I./Includes/libft -I./Includes/minilibx-linux
+MLXFLAGS = -L./Includes/minilibx-linux -lmlx -L/usr/X11R6/lib -lX11 -lXext
+LDFLAGS = -L./Includes/libft -lft
 
-SRCS =	./FdF_parsing/FdF_parsing.c ./FdF_parsing/FdF_node_management.c \
-		./FdF_errors/FdF_line_error.c ./FdF_errors/FdF_token_error.c \
-		./FdF_parsing/FdF_memory_management.c \
-		./FdF_mlx_management/Minilibx_creation.c \
-		./FdF_mlx_management/Minilibx_key_handling.c \
-		./FdF_utils/FdF_size_utils.c ./FdF_utils/FdF_bresenham_utils.c \
-		./FdF_utils/FdF_list_utils.c ./FdF_utils/FdF_draw_utils.c \
-		./FdF_utils/FdF_mvt_utils.c \
-		./FdF_draw/FdF_bresenham.c ./FdF_draw/FdF_isometric.c \
-		./FdF_draw/FdF_offset.c ./FdF_draw/FdF_clear_draw.c \
-		./FdF_main.c \
+SRCDIR = Src
+OBJDIR = obj
 
-OBJS =	$(SRCS:.c=.o)
+SRCS =  $(SRCDIR)/FdF_parsing/FdF_parsing.c $(SRCDIR)/FdF_parsing/FdF_node_management.c \
+		$(SRCDIR)/FdF_errors/FdF_line_error.c $(SRCDIR)/FdF_errors/FdF_token_error.c \
+		$(SRCDIR)/FdF_parsing/FdF_memory_management.c \
+		$(SRCDIR)/FdF_mlx_management/Minilibx_creation.c \
+		$(SRCDIR)/FdF_mlx_management/Minilibx_key_handling.c \
+		$(SRCDIR)/FdF_utils/FdF_size_utils.c $(SRCDIR)/FdF_utils/FdF_bresenham_utils.c \
+		$(SRCDIR)/FdF_utils/FdF_list_utils.c $(SRCDIR)/FdF_utils/FdF_draw_utils.c \
+		$(SRCDIR)/FdF_utils/FdF_mvt_utils.c \
+		$(SRCDIR)/FdF_draw/FdF_bresenham.c $(SRCDIR)/FdF_draw/FdF_isometric.c \
+		$(SRCDIR)/FdF_draw/FdF_offset.c $(SRCDIR)/FdF_draw/FdF_clear_draw.c \
+		$(SRCDIR)/FdF_main.c
 
-all: announce libft mlx $(NAME) finished
+OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
+
+DEPS = $(OBJS:.o=.d)
+
+all: announce intro libft mlx $(NAME)
 
 announce:
-	@echo "Author: Florent Belotti"
-	@echo "Project: Fil_de_Fer"
+	@echo "\n==================================="
+	@echo "Author: $(AUTHOR)"
+	@echo "Project: $(NAME)"
+	@echo "===================================\n"
 
-$(NAME):	$(OBJS) libft mlx
-	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(MLXFLAGS) -lm -o $(NAME)
-	@echo "Compilation of $(NAME) finished."
+intro:
+	@echo "Starting the build process..."
+
+$(NAME): $(OBJS)
+	@echo "\nFil_de_fer:	libft: creating library..."
+	@$(MAKE) -C ./Includes/libft > /dev/null
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(MLXFLAGS) -lm -o $@
+	@echo "Fil_de_fer:	Executable $@ created."
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
+	@echo Fil_de_fer:	Src:	compiling file $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -MMD -c $< -o $@
 
 libft:
-	@make -C ./libft
+	@$(MAKE) -C ./Includes/libft > /dev/null
 
 mlx:
-	@make -C ./minilibx-linux
+	@$(MAKE) -C ./Includes/minilibx-linux > /dev/null
 
-clean :
+-include $(DEPS)
+
+clean:
 	@$(RM) $(OBJS)
-	@make -C ./libft clean
-	@make -C ./minilibx-linux clean
-	@echo "Cleaned."
+	@$(MAKE) -C ./Includes/libft clean > /dev/null
+	@$(MAKE) -C ./Includes/minilibx-linux clean > /dev/null
+	@echo "Fil_de_fer:	Cleaned."
 
-fclean : clean
+fclean: clean
 	@$(RM) $(NAME)
-	@make -C ./libft fclean
-	@echo "Fully cleaned."
+	@$(MAKE) -C ./Includes/libft fclean > /dev/null
+	@echo "Fil_de_fer:	Fully cleaned."
 
-re : fclean all
+re: fclean all
 
-finished:
-	@echo "Make process finished."
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: re
 
-.PHONY: all clean fclean re libft mlx announce finished
+.PHONY: all clean fclean re libft mlx announce intro
