@@ -1,43 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+<div align="left">
 
-<h1>42_cursus_Fil_de_fer</h1>
+# 42_cursus_Fil_de_fer![---------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-<p>FdF (Fil de Fer) is a graphical project that involves creating a schematic representation of a terrain in relief. This project is designed to help students learn graphical programming using the MiniLibX library. The final output is a wireframe model of a terrain displayed using isometric projection.</p>
+<div align="left">
 
-<h2>Table of Contents</h2>
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
+
+<nav>
+    
+### Summary![---------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 <ul>
-    <li><a href="#installation">Installation</a></li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#code-overview">Code Overview</a></li>
     <li><a href="#feedback">Feedback</a></li>
     <li><a href="#thanks">Thanks</a></li>
 </ul>
+</nav>
 
-<h2 id="installation">Installation</h2>
-<p>To install and run the FdF project, follow these steps:</p>
-<ol>
-    <li>Clone the repository:</li>
-    <pre><code>git clone https://github.com/yourusername/fdf.git</code></pre>
-    <li>Navigate to the project directory:</li>
-    <pre><code>cd fdf</code></pre>
-    <li>Compile the project using the provided Makefile:</li>
-    <pre><code>make</code></pre>
-</ol>
+### Features![---------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+<section id="features">
 
-<h2 id="usage">Usage</h2>
-<p>To use the FdF program, run the following command:</p>
-<pre><code>./fdf [path_to_fdf_file]</code></pre>
-<p>Example:</p>
-<pre><code>./fdf 42.fdf</code></pre>
-
-<h2 id="features">Features</h2>
 <ul>
     <li>Renders a wireframe model of a terrain using isometric projection.</li>
     <li>Supports dynamic window resizing and smooth rendering.</li>
@@ -52,7 +35,11 @@
     </li>
 </ul>
 
-<h2 id="code-overview">Code Overview</h2>
+<div align="left">
+
+### Code Overview![---------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+<section id="code-overview">
+
 <p>The project is organized into several source files, each handling different aspects of the program:</p>
 <ul>
     <li><code>FdF_main.c</code>: Contains the main function and program entry point.</li>
@@ -74,7 +61,11 @@
     <li><code>FdF_size_utils.c</code>: Utility functions for size and scaling operations.</li>
 </ul>
 
-<h2 id="feedback">Feedback</h2>
+<div align="left">
+
+### Feedback![---------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+<section id="feedback">
+
 <p>
     In the curriculum, the FdF and So_Long projects represent our first ventures into graphical projection. An essential skill to acquire here is mastering the MiniLibX, the specified graphics library. For FdF in particular, it is crucial to understand the principles of the point projection algorithm. My project was thus focused on these two main areas.
 </p>
@@ -111,8 +102,10 @@
     Ultimately, the FdF project is one of the most demanding of the initial projects in the curriculum, preceding Minishell. I would not recommend it to those who are not particularly interested in algorithmic challenges.
 </p>
 
+<div align="left">
+
+### Thanks![---------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <section id="thanks">
-    <h2>Thanks</h2>
-    <p>To <a href="https://github.com/Rrodor">Romeo Rodor (Rrodor)</a>: who took the time to help me understand the Bresenham algorithm, and more generally the logic of projecting points in space.</p>
-</body>
-</html>
+
+<p>To <a href="https://github.com/Rrodor">Romeo Rodor (Rrodor)</a>: who took the time to help me understand the Bresenham algorithm, and more generally the logic of projecting points in space.</p>
+
